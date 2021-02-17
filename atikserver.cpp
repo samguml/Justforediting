@@ -425,7 +425,7 @@ void *cmd_rcv_fcn(void *sock)
                 {
                 
                 unsigned char *file_prefix[10];
-                
+                saveFits();
                 //save as prefix_exposuretimeto3decimals_picture.fit
                 }
                 
