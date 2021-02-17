@@ -403,6 +403,7 @@ void *cmd_rcv_fcn(void *sock)
                 {
                     double exposure;
                     scanf("%lf", &exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure. 
+                    eprintf("Took exposure of %lf", exposure);
                
                 }
                 
@@ -416,7 +417,8 @@ void *cmd_rcv_fcn(void *sock)
                     {
                         scanf("%d", exposures[i]);
                         readccd(0, 0, pixelSX, pixelSY, maxBinX, maxBinY, exposures[i]);
-                        getImage(tmp, pixelCX * pixelCY);     
+                        getImage(tmp, pixelCX * pixelCY);
+                        eprintf("Took exposure #%d , which is %lf", i, exposures[i]);
                     }
                
                 }
@@ -427,6 +429,7 @@ void *cmd_rcv_fcn(void *sock)
                 unsigned char *file_prefix[10];
                 saveFits();
                 //save as prefix_exposuretimeto3decimals_picture.fit
+                eprintf("Saved file as:", filename);
                 }
                 
                 */
