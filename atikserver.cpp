@@ -397,6 +397,23 @@ void *cmd_rcv_fcn(void *sock)
                     eprintf("decoded jpeg quality: %d\n", tmp);
                     jpeg_image::set_jpeg_quality(tmp);
                 }
+                /* Put the received commands here. 3 commands the need adding: exposure time, number of exposures, proper file name
+                
+                if (strstr(buffer, "CMD_SET_EXPOSURE") != NULL)
+                {
+                }
+                
+                if (strstr(buffer, "CMD_NUM_EXPOSURES") != NULL)
+                {
+                }
+                
+                if (strstr(buffer, "CMD_FILE_NAME") != NULL)
+                {
+                }
+                
+                
+                
+                
             }
             memset(buffer, 0x0, 1024);
         }
