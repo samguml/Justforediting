@@ -408,14 +408,24 @@ void *cmd_rcv_fcn(void *sock)
                 
                 if (strstr(buffer, "CMD_NUM_EXPOSURES") != NULL)
                 {
-                unsigned char num_exposure[255]; 
+                unsigned char *num_exposure;
+                scanf("%u", num_exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure.
+                
+                    for(int i=0; i<num_exposure; i++)
+                    {
+                    //exposure taking. Note: make an array of exposures the user can enter. 
+                    }
+                
+                
                 }
                 
                 if (strstr(buffer, "CMD_FILE_NAME") != NULL)
                 {
+                
+                unsigned char *file_prefix[10];
                 }
                 
-                
+                */
                 
                 
             }
