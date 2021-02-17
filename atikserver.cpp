@@ -401,28 +401,32 @@ void *cmd_rcv_fcn(void *sock)
                 
                 if (strstr(buffer, "CMD_SET_EXPOSURE") != NULL)
                 {
-                    float exposure;
-                    scanf("%f", &exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure. 
-                    take photo but with the proper exposure-will look in the code below
+                    double exposure;
+                    scanf("%lf", &exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure. 
+               
                 }
                 
                 if (strstr(buffer, "CMD_NUM_EXPOSURES") != NULL)
                 {
                 unsigned char *num_exposure;
                 scanf("%u", num_exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure.
+                int exposures[num_exposure];
                 
                     for(int i=0; i<num_exposure; i++)
                     {
-                    //exposure taking. Note: make an array of exposures the user can enter. 
+                        scanf("%d", exposures[i]);
+                        readccd(0, 0, pixelSX, pixelSY, maxBinX, maxBinY, exposures[i]);
+                        getImage(tmp, pixelCX * pixelCY);     
                     }
-                
-                
+               
                 }
                 
                 if (strstr(buffer, "CMD_FILE_NAME") != NULL)
                 {
                 
                 unsigned char *file_prefix[10];
+                
+                //save as prefix_exposuretimeto3decimals_picture.fit
                 }
                 
                 */
