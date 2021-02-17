@@ -403,19 +403,33 @@ void *cmd_rcv_fcn(void *sock)
                 {
                     double exposure;
                     scanf("%lf", &exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure. 
+                    
+                     if (exposure < minShortExp)
+                        exposure = minShortExp;
+                     if (exposure > MAX_ALLOWED_EXPOSURE)
+                        exposure = MAX_ALLOWED_EXPOSURE;
+                        
+                    readccd(0, 0, pixelSX, pixelSY, maxBinX, maxBinY, exposure);
+                    getImage(tmp, pixelCX * pixelCY);
                     eprintf("Took exposure of %lf", exposure);
                
                 }
                 
                 if (strstr(buffer, "CMD_NUM_EXPOSURES") != NULL)
                 {
-                unsigned char *num_exposure;
-                scanf("%u", num_exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure.
-                int exposures[num_exposure];
+                    unsigned char *num_exposure;
+                    scanf("%u", num_exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure.
+                    int exposures[num_exposure];
                 
                     for(int i=0; i<num_exposure; i++)
                     {
                         scanf("%d", exposures[i]);
+                     
+                     if (exposure < minShortExp)
+                        exposure = minShortExp;
+                     if (exposure > MAX_ALLOWED_EXPOSURE)
+                        exposure = MAX_ALLOWED_EXPOSURE;
+                        
                         readccd(0, 0, pixelSX, pixelSY, maxBinX, maxBinY, exposures[i]);
                         getImage(tmp, pixelCX * pixelCY);
                         eprintf("Took exposure #%d , which is %lf", i, exposures[i]);
@@ -426,10 +440,11 @@ void *cmd_rcv_fcn(void *sock)
                 if (strstr(buffer, "CMD_FILE_NAME") != NULL)
                 {
                 
-                unsigned char *file_prefix[10];
-                saveFits();
-                //save as prefix_exposuretimeto3decimals_picture.fit
-                eprintf("Saved file as:", filename);
+                    unsigned char *file_prefix[10];
+                    saveFits();
+                    //save as prefix_exposuretimeto3decimals_picture.fit
+                    eprintf("Saved file as:", filename);
+                    
                 }
                 
                 */
