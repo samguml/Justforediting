@@ -401,10 +401,14 @@ void *cmd_rcv_fcn(void *sock)
                 
                 if (strstr(buffer, "CMD_SET_EXPOSURE") != NULL)
                 {
+                    float exposure;
+                    scanf("%f", &exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure. 
+                    take photo but with the proper exposure-will look in the code below
                 }
                 
                 if (strstr(buffer, "CMD_NUM_EXPOSURES") != NULL)
                 {
+                unsigned char num_exposure[255]; 
                 }
                 
                 if (strstr(buffer, "CMD_FILE_NAME") != NULL)
