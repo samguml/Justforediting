@@ -397,6 +397,13 @@ void *rcv_thr(void *sock)
                     // fprintf(stderr, "%s: Tail found at 0x%p\n", __func__, (void *)tail);
                     pthread_mutex_lock(&lock);
                     memcpy(img.metadata, head + 6, sizeof(net_meta));
+                    
+                    //memcpy(img.commands, head+6+4, sizeof(net_meta)); unsure about the size part, kinda confusing
+                    
+                    //or
+                    
+                    //memcpy(img.metadata, head+10, sizeof(net_meta)); this line combines net_meta and commands structs
+                    
                     fprintf(stderr, "Tstamp: %lu\n", img.metadata->tstamp);
                     fprintf(stderr, "Width: %u\n", img.metadata->width);
                     fprintf(stderr, "Hidth: %u\n", img.metadata->height);
