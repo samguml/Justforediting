@@ -334,6 +334,17 @@ char *find_match(char *buf1, ssize_t len1, char *buf2, ssize_t len2)
     return NULL;
 }
 
+/*
+struct commands{
+    
+        int take_exposure=0;
+        float exposure;
+        unsigned char num_exposure;
+        unsigned char file_prefix[10];
+        
+*/
+
+
 pthread_mutex_t lock;
 void *rcv_thr(void *sock)
 {
