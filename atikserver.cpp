@@ -376,6 +376,16 @@ void sig_handler(int in)
 }
 #define PORT 12395
 
+/*
+struct {
+    
+        int take_exposure=0;
+        float exposure;
+        unsigned char num_exposure;
+        unsigned char file_prefix[10];
+       }commands;
+ */
+
 void *cmd_rcv_fcn(void *sock)
 {
     char buffer[1024] = {0};
@@ -397,58 +407,27 @@ void *cmd_rcv_fcn(void *sock)
                     eprintf("decoded jpeg quality: %d\n", tmp);
                     jpeg_image::set_jpeg_quality(tmp);
                 }
-                /* Put the received commands here. 3 commands the need adding: exposure time, number of exposures, proper file name
+                /*
+                if (take_exposure){
                 
-                if (strstr(buffer, "CMD_SET_EXPOSURE") != NULL)
-                {
-                    double exposure;
-                    scanf("%lf", &exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure. 
-                    
-                     if (exposure < minShortExp)
-                        exposure = minShortExp;
-                     if (exposure > MAX_ALLOWED_EXPOSURE)
-                        exposure = MAX_ALLOWED_EXPOSURE;
-                        
-                    readccd(0, 0, pixelSX, pixelSY, maxBinX, maxBinY, exposure);
-                    getImage(tmp, pixelCX * pixelCY);
-                    eprintf("Took exposure of %lf", exposure);
-               
+                if(num_exposure >1){
+                for(int i=0; i<num_exposure{
+                take exposure
+                save
+                }
+
                 }
                 
-                if (strstr(buffer, "CMD_NUM_EXPOSURES") != NULL)
-                {
-                    unsigned char *num_exposure;
-                    scanf("%u", num_exposure); //This is really just a placeholder. I am a tad unsure of how to deliver the proper exposure.
-                    int exposures[num_exposure];
-                
-                    for(int i=0; i<num_exposure; i++)
-                    {
-                        scanf("%d", exposures[i]);
-                     
-                     if (exposure < minShortExp)
-                        exposure = minShortExp;
-                     if (exposure > MAX_ALLOWED_EXPOSURE)
-                        exposure = MAX_ALLOWED_EXPOSURE;
-                        
-                        readccd(0, 0, pixelSX, pixelSY, maxBinX, maxBinY, exposures[i]);
-                        getImage(tmp, pixelCX * pixelCY);
-                        eprintf("Took exposure #%d , which is %lf", i, exposures[i]);
-                    }
-               
-                }
-                
-                if (strstr(buffer, "CMD_FILE_NAME") != NULL)
-                {
-                
-                    unsigned char *file_prefix[10];
-                    saveFits();
-                    //save as prefix_exposuretimeto3decimals_picture.fit
-                    eprintf("Saved file as:", filename);
+                if(num_exposure==1){
+                take exposure save 
                     
                 }
                 
+      
+      
+                }
+               
                 */
-                
                 
             }
             memset(buffer, 0x0, 1024);
