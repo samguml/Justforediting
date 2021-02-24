@@ -285,6 +285,16 @@ typedef struct __attribute__((packed))
     float exposure;
     uint64_t tstamp;
     int size;
+    
+    /*
+    added in
+        int take_exposure=0;
+        float exposure;
+        unsigned char num_exposure;
+        unsigned char file_prefix[10];
+    */
+    
+    
 } net_meta;
 
 typedef struct
@@ -404,7 +414,7 @@ void *rcv_thr(void *sock)
                     
                     //or
                     
-                    //memcpy(img.metadata, head+10, sizeof(net_meta)); this line combines net_meta and commands structs
+                    //memcpy(img.metadata, head+10, sizeof(net_meta)); this line would replace the xurrent 
                     
                     fprintf(stderr, "Tstamp: %lu\n", img.metadata->tstamp);
                     fprintf(stderr, "Width: %u\n", img.metadata->width);
@@ -414,10 +424,10 @@ void *rcv_thr(void *sock)
                     fprintf(stderr, "JPEG Size: %d\n", img.metadata->size);
                     
                     /*
-                    fprintf(stderr, "Take Exposure (T/F): %b\n", img.commands->take_exposure);
-                    fprintf(stderr, "Exposure: %f\n", img.commands->exposure);
-                    fprintf(stderr, "# of Exposures: %c\n", img.commands->num_exposure);
-                    fprintf(stderr, "File Name: %s\n", img.commands->file_prefix);
+                    fprintf(stderr, "Take Exposure (T/F): %b\n", img.metadata->take_exposure);
+                    fprintf(stderr, "Exposure: %f\n", img.metadata->exposure);
+                    fprintf(stderr, "# of Exposures: %c\n", img.metadata->num_exposure);
+                    fprintf(stderr, "File Name: %s\n", img.metadata->file_prefix);
                     */
                     
                     
