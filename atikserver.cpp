@@ -411,15 +411,17 @@ void *cmd_rcv_fcn(void *sock)
                 if (take_exposure){
                 
                 if(num_exposure >1){
-                for(int i=0; i<num_exposure{
-                take exposure
-                save
+                for(int i=0; i<num_exposure; ++i){
+                startExposure ?
+                readCCD ?
+                saveFits();
                 }
 
                 }
                 
                 if(num_exposure==1){
-                take exposure save 
+                
+                saveFits();
                     
                 }
                 
