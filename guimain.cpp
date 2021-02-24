@@ -362,6 +362,8 @@ void *rcv_thr(void *sock)
 {
     img.metadata = (net_meta *)malloc(sizeof(net_meta));
     img.data = (unsigned char *)malloc(1024 * 1024 * 4);
+    
+    //if commands struct wouldn't be a part of meta_data, this will need to change
     memset(rcv_buf, 0x0, sizeof(rcv_buf));
     while (!done)
     {
@@ -435,6 +437,7 @@ void *rcv_thr(void *sock)
                     if (img.metadata->size > 0)
                     {
                         memcpy(img.data, head + 6 + sizeof(net_meta), img.metadata->size);
+                        //note: would add 4 to the 6's here
                     }
                     pthread_mutex_unlock(&lock);
                     if (head + 6 + sizeof(net_meta) + img.metadata->size != tail)
