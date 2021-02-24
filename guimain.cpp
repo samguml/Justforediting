@@ -441,6 +441,7 @@ void *rcv_thr(void *sock)
     }
     free(img.metadata);
     free(img.data);
+    
     return NULL;
 }
 
