@@ -286,14 +286,6 @@ typedef struct __attribute__((packed))
     uint64_t tstamp;
     int size;
     
-    /*
-    added in
-        int take_exposure=0;
-        float exposure;
-        unsigned char num_exposure;
-        unsigned char file_prefix[10];
-    */
-    
     
 } net_meta;
 
@@ -353,6 +345,8 @@ struct {
         unsigned char num_exposure;
         unsigned char file_prefix[10];
        }commands;
+       
+commands imgcommand;
         
 */
 
@@ -363,7 +357,7 @@ void *rcv_thr(void *sock)
     img.metadata = (net_meta *)malloc(sizeof(net_meta));
     img.data = (unsigned char *)malloc(1024 * 1024 * 4);
     
-    //if commands struct wouldn't be a part of meta_data, this will need to change
+
     memset(rcv_buf, 0x0, sizeof(rcv_buf));
     while (!done)
     {
@@ -412,12 +406,9 @@ void *rcv_thr(void *sock)
                     pthread_mutex_lock(&lock);
                     memcpy(img.metadata, head + 6, sizeof(net_meta));
                     
-                    //memcpy(img.commands, head+6+4, sizeof(commands)); unsure about the size part, kinda confusing
+                    //memcpy(imgcommand.commands, head+6+4, sizeof(commands)); unsure about the size part, kinda confusing
                     
-                    //or
-                    
-                    //memcpy(img.metadata, head+10, sizeof(net_meta)); this line would replace the xurrent 
-                    
+           
                     fprintf(stderr, "Tstamp: %lu\n", img.metadata->tstamp);
                     fprintf(stderr, "Width: %u\n", img.metadata->width);
                     fprintf(stderr, "Hidth: %u\n", img.metadata->height);
@@ -426,10 +417,10 @@ void *rcv_thr(void *sock)
                     fprintf(stderr, "JPEG Size: %d\n", img.metadata->size);
                     
                     /*
-                    fprintf(stderr, "Take Exposure (T/F): %b\n", img.metadata->take_exposure);
-                    fprintf(stderr, "Exposure: %f\n", img.metadata->exposure);
-                    fprintf(stderr, "# of Exposures: %c\n", img.metadata->num_exposure);
-                    fprintf(stderr, "File Name: %s\n", img.metadata->file_prefix);
+                    fprintf(stderr, "Take Exposure (T/F): %b\n", imgcommand.->take_exposure);
+                    fprintf(stderr, "Exposure: %f\n", imgcommand.metadata->exposure);
+                    fprintf(stderr, "# of Exposures: %c\n", imgcommand.metadata->num_exposure);
+                    fprintf(stderr, "File Name: %s\n", imgcommand->file_prefix);
                     */
                     
                     
@@ -437,7 +428,7 @@ void *rcv_thr(void *sock)
                     if (img.metadata->size > 0)
                     {
                         memcpy(img.data, head + 6 + sizeof(net_meta), img.metadata->size);
-                        //note: would add 4 to the 6's here
+                        //I will worry about this later. Need to ask some questions about it. 
                     }
                     pthread_mutex_unlock(&lock);
                     if (head + 6 + sizeof(net_meta) + img.metadata->size != tail)
