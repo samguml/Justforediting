@@ -420,8 +420,8 @@ void *rcv_thr(void *sock)
                     
                     /*
                     fprintf(stderr, "Take Exposure (T/F): %b\n", imgcommand.->take_exposure);
-                    fprintf(stderr, "Exposure: %f\n", imgcommand.metadata->exposure);
-                    fprintf(stderr, "# of Exposures: %c\n", imgcommand.metadata->num_exposure);
+                    fprintf(stderr, "Exposure: %f\n", imgcommand->exposure);
+                    fprintf(stderr, "# of Exposures: %c\n", imgcommand->num_exposure);
                     fprintf(stderr, "File Name: %s\n", imgcommand->file_prefix);
                     */
                     
