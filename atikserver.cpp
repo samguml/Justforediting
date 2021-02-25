@@ -424,6 +424,8 @@ void *cmd_fcn(void *img)
     int addrlen = sizeof(address);
 
     net_image *jpg = (net_image *)img;
+    
+    
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
