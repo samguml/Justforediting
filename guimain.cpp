@@ -357,6 +357,8 @@ void *rcv_thr(void *sock)
     img.metadata = (net_meta *)malloc(sizeof(net_meta));
     img.data = (unsigned char *)malloc(1024 * 1024 * 4);
     
+    //I am unsure of how to make this happen with the new struct
+    
 
     memset(rcv_buf, 0x0, sizeof(rcv_buf));
     while (!done)
