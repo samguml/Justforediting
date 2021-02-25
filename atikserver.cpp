@@ -514,8 +514,22 @@ void *cmd_fcn(void *img)
         /*
         if(imgcommand->take_xposure){
                 if(num_exposure > 1){
+                
+                for(int k=0; k<num_exposure ;++k){
+                
+                    readCCD(0, 0, pixelCX, pixelCY, 1, 1, exposure);
+                    getImage(tmp, pixelCX * pixelCY); //Note, change 
+                    saveFits(file_prefix[10]);
                 }
-                if(num_exposure =1){
+                
+                
+                }
+                
+                if(num_exposure ==1){
+                
+                    readCCD(0, 0, pixelCX, pixelCY, 1, 1, exposure);
+                    getImage(tmp, pixelCX * pixelCY); //Note, change 
+                    saveFits(file_prefix[10]);
                 }
         
         }
