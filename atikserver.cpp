@@ -407,30 +407,7 @@ void *cmd_rcv_fcn(void *sock)
                     eprintf("decoded jpeg quality: %d\n", tmp);
                     jpeg_image::set_jpeg_quality(tmp);
                 }
-                /*
-                if (take_exposure){
-                
-                if(num_exposure >1){
-                for(int i=0; i<num_exposure; ++i){
-                startExposure ?
-                readCCD ?
-                saveFits();
-                }
-
-                }
-                
-                if(num_exposure==1){
-                
-                saveFits();
-                    
-                }
-                
-      
-      
-                }
-               
-                */
-                
+             
             }
             memset(buffer, 0x0, 1024);
         }
@@ -510,13 +487,14 @@ void *cmd_fcn(void *img)
         pthread_mutex_lock(&net_img_lock);
         // cout << "Img: " << jpg->metadata->size << " bytes, metadata: " << sizeof(net_meta) << " bytes" << endl;
         int sz = 0;
-        int32_t out_sz = jpg->metadata->size + sizeof(net_meta) + 18; // total size = size of metadata + size of image + FBEGIN + FEND
+        int32_t out_sz = jpg->metadata->size + sizeof(net_meta) + 18; //+sizeof(commands) ? // total size = size of metadata + size of image + FBEGIN + FEND
         unsigned char *buf = (unsigned char *)malloc(out_sz);         // image size + image data area
         memcpy(buf, "SIZE", 4);
         memcpy(buf + 4, &out_sz, 4);
         memcpy(buf + 8, "FBEGIN", 6);                                         // copy FBEGIN
         memcpy(buf + 14, jpg->metadata, sizeof(net_meta));                    // copy metadata
         memcpy(buf + 14 + sizeof(net_meta), jpg->data, jpg->metadata->size);  // copy jpeg data
+        //memcpy(buf +14 +sizeof(commands), 
         memcpy(buf + 14 + sizeof(net_meta) + jpg->metadata->size, "FEND", 4); // copy FEND
         pthread_mutex_unlock(&net_img_lock);
         if (jpg->metadata->size > 0)
