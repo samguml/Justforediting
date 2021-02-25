@@ -357,7 +357,7 @@ void *rcv_thr(void *sock)
     img.metadata = (net_meta *)malloc(sizeof(net_meta));
     img.data = (unsigned char *)malloc(1024 * 1024 * 4);
     
-    //I am unsure of how to make this happen with the new struct
+    //Note: This is the pointer vairables being initialized 
     
 
     memset(rcv_buf, 0x0, sizeof(rcv_buf));
@@ -430,7 +430,7 @@ void *rcv_thr(void *sock)
                     if (img.metadata->size > 0)
                     {
                         memcpy(img.data, head + 6 + sizeof(net_meta), img.metadata->size);
-                        //I will worry about this later. Need to ask some questions about it. 
+                        //Still ask about this
                     }
                     pthread_mutex_unlock(&lock);
                     if (head + 6 + sizeof(net_meta) + img.metadata->size != tail)
