@@ -429,13 +429,13 @@ void *rcv_thr(void *sock)
                     
                     if (img.metadata->size > 0)
                     {
-                        memcpy(img.data, head + 6 + sizeof(net_meta), img.metadata->size);
-                        //Still ask about this
+                        memcpy(img.data, head + 6 + sizeof(net_meta), img.metadata->size);//+sizeof(commands)?
+           
                     }
                     pthread_mutex_unlock(&lock);
                     if (head + 6 + sizeof(net_meta) + img.metadata->size != tail)
                     {
-                        fprintf(stderr, "Head + data does not match tail: 0x%p and 0x%p\n", (void *)(head + 6 + sizeof(net_meta) + img.metadata->size), (void *)tail);
+                        fprintf(stderr, "Head + data does not match tail: 0x%p and 0x%p\n", (void *)(head + 6 + sizeof(net_meta) + img.metadata->size), (void *)tail); //+sizeof(commands)?
                     }
                 }
             }
