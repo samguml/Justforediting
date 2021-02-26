@@ -386,7 +386,7 @@ struct {
        }commands;
  */
 
-//commands imgcommand;
+
 
 void *cmd_rcv_fcn(void *sock)
 {
@@ -426,6 +426,8 @@ void *cmd_fcn(void *img)
     int addrlen = sizeof(address);
 
     net_image *jpg = (net_image *)img;
+    
+    //commands *newimgcommand =(commands *)imgcommand;
     
     
     // Creating socket file descriptor
