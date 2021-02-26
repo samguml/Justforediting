@@ -500,7 +500,10 @@ void *cmd_fcn(void *img)
         memcpy(buf + 8, "FBEGIN", 6);                                         // copy FBEGIN
         memcpy(buf + 14, jpg->metadata, sizeof(net_meta));                    // copy metadata
         memcpy(buf + 14 + sizeof(net_meta), jpg->data, jpg->metadata->size);  // copy jpeg data
-        //memcpy(buf +14 +sizeof(commands), ); unsure of what to do here, will need to ask
+        //memcpy(buf +14 +sizeof(net_meta)+jpg->metadata->size,  ); unsure of what to do here, will need to ask
+        //memcpy(buf+
+        //memcpy(
+        //memcpy(
         memcpy(buf + 14 + sizeof(net_meta) + jpg->metadata->size, "FEND", 4); // copy FEND
         pthread_mutex_unlock(&net_img_lock);
         if (jpg->metadata->size > 0)
