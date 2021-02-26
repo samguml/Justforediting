@@ -532,8 +532,8 @@ void *cmd_fcn(void *img)
                 
                     readCCD(0, 0, pixelCX, pixelCY, 1, 1, (newimgcommand->exposure));
                     getImage(tmp, pixelCX * pixelCY); //Note, change 
-                    saveFits((newimgcommand->file_prefix[10]));
-                }
+                    saveFits((newimgcommand->file_prefix[10]), whatgoeshere); Have file name not sure what to do with the rest
+                } 
         
         }
           
