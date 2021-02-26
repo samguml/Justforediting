@@ -515,14 +515,37 @@ void *cmd_fcn(void *img)
         
         //Here I will put my commands so that they will execute 
         /*
-        if(newimgcommand->take_xposure){
+        bool successcommand;//to see if functions execute properly
+        char command_buf[sizeof(net_meta->size))];
+        
+        if(newimgcommand->take_exposure){
+        
                 if((newimgcommand->num_exposure) > 1){
                 
-                for(int k=0; k<(newimgcommand->num_exposure) ;++k){
+                    for(int k=0; k<(newimgcommand->num_exposure) ;++k){
                 
-                    readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->exposure));
-                    getImage(placewhereimggoes, pixelCX * pixelCY);
-                    saveFits((newimgcommand->file_prefix[10]));
+                        successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->exposure));
+                        
+                        if(successcommand){
+                       
+                            successcommand= getImage(placewhereimggoes, pixelCX * pixelCY);
+                            
+                            if(successcommand){
+                            
+                                saveFits(command_buf, (newimgcommand->file_prefix[10]));
+                            
+                            }
+                            else{
+                                cout << "Error taking photo" << endl;
+                                break;
+                            }
+                        
+                        }
+                        
+                        else{
+                            cout << "Error" << endl;
+                            break;
+                        }
                 }
                 
                 
