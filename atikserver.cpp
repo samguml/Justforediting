@@ -546,19 +546,40 @@ void *cmd_fcn(void *img)
                             cout << "Error" << endl;
                             break;
                         }
-                }
+                }//for loop
                 
                 
-                }
+                }//second if statement
                 
                 if((newimgcommand->num_exposure) ==1){
                 
-                    readCCD(0, 0, pixelCX, pixelCY, 1, 1, (newimgcommand->exposure));
-                    getImage(tmp, pixelCX * pixelCY); //Note, change 
-                    saveFits((newimgcommand->file_prefix[10]), whatgoeshere); Have file name not sure what to do with the rest
+                successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->exposure));
+                        
+                        if(successcommand){
+                       
+                            successcommand= getImage(placewhereimggoes, pixelCX * pixelCY);
+                            
+                            if(successcommand){
+                            
+                                saveFits(command_buf, (newimgcommand->file_prefix[10]));
+                            
+                            }
+                            else{
+                                cout << "Error taking photo" << endl;
+                                break;
+                            }
+                        
+                        }
+                        
+                        else{
+                            cout << "Error" << endl;
+                            break;
+                        }
+                
+
                 } 
         
-        }
+        }//first if stament
           
         
         
