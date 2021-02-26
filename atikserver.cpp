@@ -500,11 +500,9 @@ void *cmd_fcn(void *img)
         memcpy(buf + 8, "FBEGIN", 6);                                         // copy FBEGIN
         memcpy(buf + 14, jpg->metadata, sizeof(net_meta));                    // copy metadata
         memcpy(buf + 14 + sizeof(net_meta), jpg->data, jpg->metadata->size);  // copy jpeg data
-        //memcpy(buf +14 +sizeof(net_meta)+jpg->metadata->size,  ); unsure of what to do here, will need to ask
-        //memcpy(buf+
-        //memcpy(
-        //memcpy(
+        //memcpy(buf +14 +sizeof(net_meta)+jpg->metadata->size, newimgcommand, sizeof(commands) ); unsure of what to do here, will need to ask
         memcpy(buf + 14 + sizeof(net_meta) + jpg->metadata->size, "FEND", 4); // copy FEND
+        //memcpy(buf + 14 + sizeof(net_meta) + jpg->metadata->size + sizeof(commands) , "FEND", 4);
         pthread_mutex_unlock(&net_img_lock);
         if (jpg->metadata->size > 0)
         {
@@ -515,26 +513,26 @@ void *cmd_fcn(void *img)
         else
             sz = -1;
         
-        //Here I will put my command so that they will execute 
+        //Here I will put my commands so that they will execute 
         /*
-        if(imgcommand->take_xposure){
-                if(num_exposure > 1){
+        if(newimgcommand->take_xposure){
+                if((newimgcommand->num_exposure) > 1){
                 
-                for(int k=0; k<num_exposure ;++k){
+                for(int k=0; k<(newimgcommand->num_exposure) ;++k){
                 
-                    readCCD(0, 0, pixelCX, pixelCY, 1, 1, exposure);
+                    readCCD(0, 0, pixelCX, pixelCY, 1, 1, (newimgcommand->exposure));
                     getImage(tmp, pixelCX * pixelCY); //Note, change 
-                    saveFits(file_prefix[10]);
+                    saveFits((newimgcommand->file_prefix[10]));
                 }
                 
                 
                 }
                 
-                if(num_exposure ==1){
+                if((newimgcommand->num_exposure) ==1){
                 
-                    readCCD(0, 0, pixelCX, pixelCY, 1, 1, exposure);
+                    readCCD(0, 0, pixelCX, pixelCY, 1, 1, (newimgcommand->exposure));
                     getImage(tmp, pixelCX * pixelCY); //Note, change 
-                    saveFits(file_prefix[10]);
+                    saveFits((newimgcommand->file_prefix[10]));
                 }
         
         }
