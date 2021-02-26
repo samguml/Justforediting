@@ -520,7 +520,7 @@ void *cmd_fcn(void *img)
                 
                 for(int k=0; k<(newimgcommand->num_exposure) ;++k){
                 
-                    readCCD(0, 0, pixelCX, pixelCY, 1, 1, (newimgcommand->exposure));
+                    readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->exposure));
                     getImage(placewhereimggoes, pixelCX * pixelCY);
                     saveFits((newimgcommand->file_prefix[10]));
                 }
