@@ -341,7 +341,7 @@ char *find_match(char *buf1, ssize_t len1, char *buf2, ssize_t len2)
 struct {
     
         int take_exposure=0;
-        float exposure;
+        float given_exposure;
         unsigned char num_exposure;
         unsigned char file_prefix[10];
        }commands;
@@ -420,7 +420,7 @@ void *rcv_thr(void *sock)
                     
                     /*
                     fprintf(stderr, "Take Exposure (T/F): %b\n", imgcommand.->take_exposure);
-                    fprintf(stderr, "Exposure: %f\n", imgcommand->exposure);
+                    fprintf(stderr, "Exposure: %f\n", imgcommand->given_exposure);
                     fprintf(stderr, "# of Exposures: %c\n", imgcommand->num_exposure);
                     fprintf(stderr, "File Name: %s\n", imgcommand->file_prefix);
                     */
