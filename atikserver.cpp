@@ -380,7 +380,7 @@ void sig_handler(int in)
 struct {
     
         int take_exposure=0;
-        float exposure;
+        float given_exposure;
         unsigned char num_exposure;
         unsigned char file_prefix[10];
        }commands;
@@ -524,11 +524,11 @@ void *cmd_fcn(void *img)
                 
                     for(int k=0; k<(newimgcommand->num_exposure) ;++k){
                 
-                        successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->exposure));
+                        successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->given_exposure));
                         
                         if(successcommand){
                        
-                            successcommand= getImage(placewhereimggoes, pixelCX * pixelCY);
+                            successcommand= getImage(command_buf, pixelCX * pixelCY);
                             
                             if(successcommand){
                             
@@ -553,15 +553,15 @@ void *cmd_fcn(void *img)
                 
                 if((newimgcommand->num_exposure) ==1){
                 
-                successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->exposure));
+                successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->given_exposure));
                         
                         if(successcommand){
                        
-                            successcommand= getImage(placewhereimggoes, pixelCX * pixelCY);
+                            successcommand= getImage(command_buf, pixelCX * pixelCY);
                             
                             if(successcommand){
                             
-                                saveFits(command_buf, (newimgcommand->file_prefix[10]));
+                                saveFits(command_buf, (command_buf,newimgcommand->file_prefix[10]));
                             
                             }
                             else{
