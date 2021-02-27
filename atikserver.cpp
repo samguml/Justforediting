@@ -532,7 +532,7 @@ void *cmd_fcn(void *img)
                             
                             if(successcommand){
                             
-                                saveFits(command_buf, (newimgcommand->file_prefix[10]));
+                                saveFits(command_buf, (newimgcommand->file_prefix[10]), command_buf);
                             
                             }
                             else{
@@ -561,7 +561,7 @@ void *cmd_fcn(void *img)
                             
                             if(successcommand){
                             
-                                saveFits(command_buf, (command_buf,newimgcommand->file_prefix[10]));
+                                saveFits(command_buf, (newimgcommand->file_prefix[10]), commandbuf);
                             
                             }
                             else{
