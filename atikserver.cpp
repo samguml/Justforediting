@@ -391,8 +391,7 @@ struct {
 void *cmd_rcv_fcn(void *sock)
 {
     char buffer[1024] = {0};
-    //bool successcommand;//to see if functions execute properly
-    //unsigned short command_buf[pixelCX * pixelCY];//holds image 
+   
     while (!done)
     {
         if (*(int *)sock > 0)
@@ -415,79 +414,8 @@ void *cmd_rcv_fcn(void *sock)
             }
             memset(buffer, 0x0, 1024);
         }
-        //Here I will put my commands so that they will execute 
-        /*
-
-        
-        if(newimgcommand->take_exposure){
-        
-                if((newimgcommand->num_exposure) > 1){
-                
-                    for(int k=0; k<(newimgcommand->num_exposure) ;++k){
-                
-                        successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->given_exposure));
-                        
-                        if(successcommand){
-                       
-                            successcommand= getImage(command_buf, pixelCX * pixelCY);
-                            
-                            if(successcommand){
-                            
-                                saveFits(command_buf, (newimgcommand->file_prefix[10]), command_buf);
-                            
-                            }
-                            else{
-                                cout << "Error taking photo" << endl;
-                                break;
-                            }
-                        
-                        }
-                        
-                        else{
-                            cout << "Error" << endl;
-                            break;
-                        }
-                }//for loop
-                
-                
-                }//second if statement
-                
-                if((newimgcommand->num_exposure) ==1){
-                
-                successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->given_exposure));
-                        
-                        if(successcommand){
-                       
-                            successcommand= getImage(command_buf, pixelCX * pixelCY);
-                            
-                            if(successcommand){
-                            
-                                saveFits(command_buf, (newimgcommand->file_prefix[10]), commandbuf);
-                            
-                            }
-                            else{
-                                cout << "Error taking photo" << endl;
-                                break;
-                            }
-                        
-                        }
-                        
-                        else{
-                            cout << "Error" << endl;
-                            break;
-                        }
-                
-
-                } 
-        
-        }//first if stament
-          
-        
-        
-        */
-        
-        
-        
+       
+ 
         usleep(1000000 / 60); // receive a command at 60 Hz
     }
     return NULL;
@@ -587,6 +515,81 @@ void *cmd_fcn(void *img)
         }
         else
             sz = -1;
+        
+        //bool successcommand;//to see if functions execute properly
+        //unsigned short command_buf[pixelCX * pixelCY];//holds image 
+        
+         //Here I will put my commands so that they will execute 
+        /*
+
+        
+        if(newimgcommand->take_exposure){
+        
+                if((newimgcommand->num_exposure) > 1){
+                
+                    for(int k=0; k<(newimgcommand->num_exposure) ;++k){
+                
+                        successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->given_exposure));
+                        
+                        if(successcommand){
+                       
+                            successcommand= getImage(command_buf, pixelCX * pixelCY);
+                            
+                            if(successcommand){
+                            
+                                saveFits(command_buf, (newimgcommand->file_prefix[10]), command_buf);
+                            
+                            }
+                            else{
+                                cout << "Error taking photo" << endl;
+                                break;
+                            }
+                        
+                        }
+                        
+                        else{
+                            cout << "Error" << endl;
+                            break;
+                        }
+                }//for loop
+                
+                
+                }//second if statement
+                
+                if((newimgcommand->num_exposure) ==1){
+                
+                successcommand=readCCD(0, 0, pixelSX, pixelSY, 1, 1, (newimgcommand->given_exposure));
+                        
+                        if(successcommand){
+                       
+                            successcommand= getImage(command_buf, pixelCX * pixelCY);
+                            
+                            if(successcommand){
+                            
+                                saveFits(command_buf, (newimgcommand->file_prefix[10]), commandbuf);
+                            
+                            }
+                            else{
+                                cout << "Error taking photo" << endl;
+                                break;
+                            }
+                        
+                        }
+                        
+                        else{
+                            cout << "Error" << endl;
+                            break;
+                        }
+                
+
+                } 
+        
+        }//first if stament
+          
+        
+        
+        */
+        
         
         
         
