@@ -516,7 +516,7 @@ void *cmd_fcn(void *img)
         //Here I will put my commands so that they will execute 
         /*
         bool successcommand;//to see if functions execute properly
-        char command_buf[sizeof(net_meta->size))];
+         unsigned short command_buf[pixelCX * pixelCY];
         
         if(newimgcommand->take_exposure){
         
