@@ -408,7 +408,7 @@ void *rcv_thr(void *sock)
                     pthread_mutex_lock(&lock);
                     memcpy(img.metadata, head + 6, sizeof(net_meta));
                     
-                    //memcpy(imgcommand.commands, head+6+4, sizeof(commands)); unsure about the size part, kinda confusing
+                    //memcpy(imgcommand.commands, head+6+sizeof(net_meta), sizeof(commands));
                     
            
                     fprintf(stderr, "Tstamp: %lu\n", img.metadata->tstamp);
