@@ -338,7 +338,7 @@ char *find_match(char *buf1, ssize_t len1, char *buf2, ssize_t len2)
 
 /*
 
-struct {
+struct_attribute((packed)) {
     
         int32_t take_exposure=0;
         float given_exposure;
