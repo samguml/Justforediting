@@ -340,10 +340,10 @@ char *find_match(char *buf1, ssize_t len1, char *buf2, ssize_t len2)
 
 struct {
     
-        int take_exposure=0;
+        int32_t take_exposure=0;
         float given_exposure;
         unsigned char num_exposure;
-        unsigned char file_prefix[10];
+        char file_prefix[10];
        }commands;
        
 commands imgcommand;
