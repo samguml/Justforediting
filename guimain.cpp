@@ -299,12 +299,12 @@ struct __attribute__((packed)) {
         unsigned char num_exposure;
         char file_prefix[10];
        }commands;
+       
 */
 
 typedef struct
 {
     net_meta *metadata;
-    //commands *cmddata;
     pthread_mutex_t lock;
     unsigned char *data;
 } net_image;
