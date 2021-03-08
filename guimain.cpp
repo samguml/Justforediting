@@ -289,9 +289,22 @@ typedef struct __attribute__((packed))
     
 } net_meta;
 
+
+/*
+
+struct __attribute__((packed)) {
+    
+        int32_t take_exposure=0;
+        float given_exposure;
+        unsigned char num_exposure;
+        char file_prefix[10];
+       }commands;
+*/
+
 typedef struct
 {
     net_meta *metadata;
+    //commands *cmddata;
     pthread_mutex_t lock;
     unsigned char *data;
 } net_image;
@@ -335,20 +348,6 @@ char *find_match(char *buf1, ssize_t len1, char *buf2, ssize_t len2)
         return &(buf1[i]);
     return NULL;
 }
-
-/*
-
-struct __attribute__((packed)) {
-    
-        int32_t take_exposure=0;
-        float given_exposure;
-        unsigned char num_exposure;
-        char file_prefix[10];
-       }commands;
-       
-commands imgcommand;
-        
-*/
 
 
 pthread_mutex_t lock;
