@@ -224,11 +224,23 @@ typedef struct __attribute__((packed))
     int size;
 } net_meta;
 
+/*
+
+struct __attribute__((packed)) {
+    
+        int32_t take_exposure=0;
+        float given_exposure;
+        unsigned char num_exposure;
+        char file_prefix[10];
+       }commands;
+*/
+
 pthread_mutex_t net_img_lock;
 
 typedef struct
 {
     net_meta *metadata;
+    //commands *cmddata;
     pthread_mutex_t lock;
     unsigned char *data;
 } net_image;
