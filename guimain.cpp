@@ -307,6 +307,8 @@ typedef struct
     net_meta *metadata;
     pthread_mutex_t lock;
     unsigned char *data;
+    //bool takingexposure;
+    //int exposurenum; or char exposurenum[]; -an array, set size based on command then increment? Ask sunip
 } net_image;
 
 net_image img;
