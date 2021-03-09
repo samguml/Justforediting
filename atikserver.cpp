@@ -240,9 +240,10 @@ pthread_mutex_t net_img_lock;
 typedef struct
 {
     net_meta *metadata;
-    //commands *cmddata;
     pthread_mutex_t lock;
     unsigned char *data;
+    //bool takingexposure;
+    //int exposurenum; or char exposurenum[]; -an array, set size based on command then increment? Ask sunip
 } net_image;
 
 void saveFits(const char *fileName, comic_image *image)
