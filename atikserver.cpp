@@ -444,7 +444,7 @@ void *cmd_fcn(void *img)
 
     net_image *jpg = (net_image *)img;
     
-    //commands *newimgcommand =(commands *)imgcommand;
+    //commands *newimgcommand =(commands *)imgcommand;-old
     
     
     // Creating socket file descriptor
