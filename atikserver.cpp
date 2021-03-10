@@ -633,6 +633,17 @@ int main(int argc, char *argv[])
         eprintf("main: Failed to create comm thread, exiting...");
         goto end;
     }
+    /*
+    while(num_exposure>0){
+    unsigned short command_buf[pixelCX * pixelCY];
+    readCCD(0, 0, pixelSX, pixelSY, 1, 1, (imgcommands->given_exposure));
+    getImage(command_buf, pixelCX * pixelCY);
+    saveFits(file_prefix, command_buf);
+    num_exposure=num_exposure-1;
+    }
+    */
+   
+    
     while (!done)
     {
         unsigned width = device->imageWidth(pixelCX, 1);
