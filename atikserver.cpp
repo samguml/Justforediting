@@ -633,8 +633,11 @@ int main(int argc, char *argv[])
         eprintf("main: Failed to create comm thread, exiting...");
         goto end;
     }
-    /*
-    while(num_exposure>0){
+   
+    while (!done)
+    {
+            /*
+    if(num_exposure>0){
     unsigned short command_buf[pixelCX * pixelCY];
     readCCD(0, 0, pixelSX, pixelSY, 1, 1, (imgcommands->given_exposure));
     getImage(command_buf, pixelCX * pixelCY);
@@ -642,10 +645,10 @@ int main(int argc, char *argv[])
     num_exposure=num_exposure-1;
     }
     */
-   
-    
-    while (!done)
-    {
+    //else{    
+        
+        
+        
         unsigned width = device->imageWidth(pixelCX, 1);
         unsigned height = device->imageWidth(pixelCY, 1);
         if (exposure > maxShortExp)
@@ -700,7 +703,9 @@ int main(int argc, char *argv[])
             exposure = minShortExp;
         if (exposure > MAX_ALLOWED_EXPOSURE)
             exposure = MAX_ALLOWED_EXPOSURE;
+    //}if loop for the loop
     }
+    
     cout << "main: Out of loop" << endl
          << flush;
     done = 1;
