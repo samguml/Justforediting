@@ -433,8 +433,6 @@ void *cmd_fcn(void *img)
 
     net_image *jpg = (net_image *)img;
     
-    //commands *newimgcommand =(commands *)imgcommand;-old
-    
     
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
