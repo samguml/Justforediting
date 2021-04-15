@@ -418,6 +418,8 @@ void *rcv_thr(void *sock)
                     fprintf(stderr, "Temp: %f\n", img.metadata->temp);
                     fprintf(stderr, "Exposure: %f s\n", img.metadata->exposure);
                     fprintf(stderr, "JPEG Size: %d\n", img.metadata->size);
+                    //fprintf(stderr, "Taking Exposure: %b\n", img->takingexposure);
+                    //fprintf(stderr, "# of Exposures: %i\n", img->exposurenum);
                     
 
                     
