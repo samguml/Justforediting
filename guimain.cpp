@@ -409,7 +409,7 @@ void *rcv_thr(void *sock)
                     pthread_mutex_lock(&lock);
                     memcpy(img.metadata, head + 6, sizeof(net_meta));
                     
-                    //memcpy(imgcommand.commands, head+6+sizeof(net_meta), sizeof(commands)); -old
+
                     
            
                     fprintf(stderr, "Tstamp: %lu\n", img.metadata->tstamp);
@@ -419,18 +419,13 @@ void *rcv_thr(void *sock)
                     fprintf(stderr, "Exposure: %f s\n", img.metadata->exposure);
                     fprintf(stderr, "JPEG Size: %d\n", img.metadata->size);
                     
-                    /*
-                    fprintf(stderr, "Take Exposure (T/F): %b\n", imgcommand.->take_exposure);-old
-                    fprintf(stderr, "Exposure: %f\n", imgcommand->given_exposure);-old
-                    fprintf(stderr, "# of Exposures: %c\n", imgcommand->num_exposure);-old
-                    fprintf(stderr, "File Name: %s\n", imgcommand->file_prefix);-old
-                    */
+
                     
                     
                     
                     if (img.metadata->size > 0)
                     {
-                        memcpy(img.data, head + 6 + sizeof(net_meta), img.metadata->size);//+sizeof(commands)? Probably not, but will leave here just in case -old
+                        memcpy(img.data, head + 6 + sizeof(net_meta), img.metadata->size);
            
                     }
                     /*
