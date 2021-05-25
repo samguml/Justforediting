@@ -635,12 +635,12 @@ int main(int argc, char *argv[])
     while (!done)
     {
             /*
-    if(num_exposure>0){
+    if(imgcommand.take_exposure=1){
+    for(int newi=0; i < imgcommand.num_exposure-1; i++){
     unsigned short command_buf[pixelCX * pixelCY];
-    readCCD(0, 0, pixelSX, pixelSY, 1, 1, (imgcommands->given_exposure));
+    readCCD(0, 0, pixelSX, pixelSY, 1, 1, (imgcommands.given_exposure));
     getImage(command_buf, pixelCX * pixelCY);
-    saveFits(file_prefix, command_buf);
-    num_exposure=num_exposure-1;
+    saveFits(img.commandfile_prefix, command_buf);
     }
     */
     //else{    
